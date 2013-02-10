@@ -110,11 +110,14 @@ class API(object):
         'obj',
         'openssl',
         'nid',
+        'pem',
         'pkcs5',
         'rand',
+        'rsa',
         'ssl',
         'ssleay',
         'stdio',
+        'x509',
     ]
 
     __instance = None

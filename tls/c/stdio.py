@@ -3,7 +3,7 @@ INCLUDES = [
 ]
 
 TYPES = [
-    'typedef ... FILE;',
+#    'typedef ... FILE;',
 ]
 
 FUNCTIONS = [

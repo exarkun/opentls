@@ -8,6 +8,9 @@ TYPES = [
     'typedef ... ASN1_OBJECT;',
     'typedef ... ASN1_STRING;',
     'typedef ... ASN1_TYPE;',
+    'typedef ... ASN1_UTCTIME;',
+    'typedef ... ASN1_GENERALIZEDTIME;',
+    'typedef ... X509;',
 ]
 
 FUNCTIONS = [
@@ -40,4 +43,10 @@ FUNCTIONS = [
     'int ASN1_INTEGER_cmp(ASN1_INTEGER *a, ASN1_INTEGER *b);',
     'int ASN1_INTEGER_set(ASN1_INTEGER *a, long v);',
     'long ASN1_INTEGER_get(ASN1_INTEGER *a);',
+
+    # ASN1 UTCTIME
+    'int ASN1_UTCTIME_cmp_time_t(const ASN1_UTCTIME *s, time_t t);',
+
+    # ASN1 GENERALIZEDTIME
+    'int ASN1_GENERALIZEDTIME_set_string(ASN1_GENERALIZEDTIME *s, const char *str);',
 ]

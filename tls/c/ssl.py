@@ -1,5 +1,5 @@
 INCLUDES = [
-    '#include "openssl/ssl.h"',
+    '#include <openssl/ssl.h>',
 ]
 
 SETUP = [
@@ -7,6 +7,8 @@ SETUP = [
 ]
 
 TYPES = [
+    'static const int SSL_FILETYPE_PEM;',
+    'static const int SSL_FILETYPE_ASN1;',
     'typedef ... SSL_METHOD;',
     'typedef ... SSL_CTX;',
 ]
