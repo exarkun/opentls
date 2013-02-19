@@ -18,6 +18,10 @@ FUNCTIONS = [
     'int X509_set_version(X509 *x,long version);',
     'long X509_get_version(X509 *x);',
 
+    'int                 X509_set_pubkey(X509 *x, EVP_PKEY *pkey);',
+
+    'int X509_sign(X509 *x, EVP_PKEY *pkey, const EVP_MD *md);',
+
     'ASN1_UTCTIME *X509_gmtime_adj(ASN1_UTCTIME *s, long adj);',
     'ASN1_UTCTIME *X509_get_notBefore(X509 *x);',
     'ASN1_UTCTIME *X509_get_notAfter(X509 *x);',

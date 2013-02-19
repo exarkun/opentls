@@ -102,6 +102,7 @@ class API(object):
         'bio',
         'bio_filter',
         'bio_sink',
+        'dsa',
         'err',
         'evp',
         'evp_md',
