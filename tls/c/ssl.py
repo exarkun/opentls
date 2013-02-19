@@ -14,6 +14,9 @@ TYPES = [
 ]
 
 FUNCTIONS = [
+    'void *OPENSSL_malloc(int num);',
+    'void OPENSSL_free(void *);',
+
     'int SSL_library_init(void);',
     # methods
 #   'SSL_METHOD *SSLv2_method(void);',

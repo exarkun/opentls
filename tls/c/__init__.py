@@ -98,6 +98,7 @@ class API(object):
 
     _modules = [
         'asn1',
+        'bignum',
         'bio',
         'bio_filter',
         'bio_sink',

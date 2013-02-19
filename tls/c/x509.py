@@ -28,4 +28,8 @@ FUNCTIONS = [
 
     'int i2d_PrivateKey_bio(BIO *bp, EVP_PKEY *pkey);',
     'EVP_PKEY *d2i_PrivateKey_bio(BIO *bp, EVP_PKEY **a);',
+
+    'unsigned long X509_subject_name_hash(X509 *a);',
+    'ASN1_INTEGER *      X509_get_serialNumber(X509 *x);',
+    'int                 X509_set_serialNumber(X509 *x, ASN1_INTEGER *serial);',
 ]

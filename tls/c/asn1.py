@@ -43,6 +43,7 @@ FUNCTIONS = [
     'int ASN1_INTEGER_cmp(ASN1_INTEGER *a, ASN1_INTEGER *b);',
     'int ASN1_INTEGER_set(ASN1_INTEGER *a, long v);',
     'long ASN1_INTEGER_get(ASN1_INTEGER *a);',
+    'BIGNUM *ASN1_INTEGER_to_BN(const ASN1_INTEGER *ai,BIGNUM *bn);',
 
     # ASN1 UTCTIME
     'int ASN1_UTCTIME_cmp_time_t(const ASN1_UTCTIME *s, time_t t);',
