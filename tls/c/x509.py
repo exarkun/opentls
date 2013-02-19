@@ -4,8 +4,6 @@ INCLUDES = [
 
 TYPES = [
     'typedef int time_t;',
-    'typedef ... ASN1_TIME;',
-    'typedef ... ASN1_UTCTIME;',
 
     """
     typedef struct {
@@ -45,9 +43,9 @@ FUNCTIONS = [
 
     'int X509_digest(const X509 *data,const EVP_MD *type, unsigned char *md, unsigned int *len);',
 
-    'ASN1_UTCTIME *X509_gmtime_adj(ASN1_UTCTIME *s, long adj);',
-    'ASN1_UTCTIME *X509_get_notBefore(X509 *x);',
-    'ASN1_UTCTIME *X509_get_notAfter(X509 *x);',
+    'ASN1_TIME *X509_gmtime_adj(ASN1_TIME *s, long adj);',
+    'ASN1_TIME *X509_get_notBefore(X509 *x);',
+    'ASN1_TIME *X509_get_notAfter(X509 *x);',
 
     # ASN1 serialization
     'int i2d_X509_bio(BIO *bp, X509 *x);',
