@@ -6,7 +6,27 @@ TYPES = [
     'typedef int time_t;',
     'typedef ... ASN1_TIME;',
     'typedef ... ASN1_UTCTIME;',
-    'typedef ... X509;',
+
+    """
+    typedef struct {
+        ASN1_OBJECT *algorithm;
+        ...;
+    } X509_ALGOR;
+    """,
+
+    """
+    typedef struct {
+        X509_ALGOR *signature;
+        ...;
+    } X509_CINF;
+    """,
+
+    """
+    typedef struct {
+        X509_CINF *cert_info;
+        ...;
+    } X509;
+    """,
 ]
 
 FUNCTIONS = [

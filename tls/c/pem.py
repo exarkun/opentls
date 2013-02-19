@@ -3,7 +3,6 @@ INCLUDES = [
 ]
 
 TYPES = [
-    'typedef ... X509;',
     'typedef ... pem_password_cb;',
 
     'typedef ... EVP_CIPHER;',

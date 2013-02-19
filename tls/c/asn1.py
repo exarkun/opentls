@@ -10,7 +10,6 @@ TYPES = [
     'typedef ... ASN1_TYPE;',
     'typedef ... ASN1_UTCTIME;',
     'typedef ... ASN1_GENERALIZEDTIME;',
-    'typedef ... X509;',
 ]
 
 FUNCTIONS = [
