@@ -22,4 +22,10 @@ FUNCTIONS = [
                                       pem_password_cb *cb, void *u);
     """,
 
+    "int PEM_write_bio_X509_REQ(BIO *bp, X509_REQ *x);",
+
+    """
+    X509_REQ *PEM_read_bio_X509_REQ(BIO *bp, X509_REQ **x,
+                                    pem_password_cb *cb, void *u);
+    """,
 ]
