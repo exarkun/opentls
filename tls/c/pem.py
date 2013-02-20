@@ -3,10 +3,8 @@ INCLUDES = [
 ]
 
 TYPES = [
-    'typedef ... pem_password_cb;',
-
     'typedef ... EVP_CIPHER;',
-    'typedef ... pem_password_cb;',
+    'typedef int pem_password_cb(char *buf, int size, int rwflag, void *userdata);',
 ]
 
 FUNCTIONS = [
