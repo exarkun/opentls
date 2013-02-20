@@ -26,6 +26,7 @@ FUNCTIONS = [
     'void EVP_PKEY_free(EVP_PKEY *key);',
 
     'int EVP_PKEY_type(int type);',
+    'int           EVP_PKEY_bits(EVP_PKEY *pkey);',
     'RSA *EVP_PKEY_get1_RSA(EVP_PKEY *pkey);',
 
     'int EVP_PKEY_assign_RSA(EVP_PKEY *pkey,RSA *key);',
