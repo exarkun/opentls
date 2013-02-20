@@ -120,6 +120,7 @@ class API(object):
         'ssleay',
         'stdio',
         'x509',
+        'x509name',
     ]
 
     __instance = None
