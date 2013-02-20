@@ -52,6 +52,9 @@ FUNCTIONS = [
     'X509_NAME * X509_get_subject_name(X509 *a);',
     'int                 X509_set_subject_name(X509 *x, X509_NAME *name);',
 
+    'X509_NAME * X509_get_issuer_name(X509 *a);',
+    'int                 X509_set_issuer_name(X509 *x, X509_NAME *name);',
+
     # ASN1 serialization
     'int i2d_X509_bio(BIO *bp, X509 *x);',
     'X509 *d2i_X509_bio(BIO *bp, X509 **x);',
