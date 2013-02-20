@@ -102,6 +102,7 @@ class API(object):
         'bio',
         'bio_filter',
         'bio_sink',
+        'conf',
         'dsa',
         'err',
         'evp',
@@ -121,6 +122,7 @@ class API(object):
         'stdio',
         'x509',
         'x509name',
+        'x509v3',
     ]
 
     __instance = None
