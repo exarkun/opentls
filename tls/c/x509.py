@@ -67,6 +67,14 @@ FUNCTIONS = [
     'int         X509_EXTENSION_get_critical(X509_EXTENSION *ex);',
     'ASN1_OBJECT *       X509_EXTENSION_get_object(X509_EXTENSION *ex);',
 
+    'int          X509_REQ_set_version(X509_REQ *x,long version);',
+    'long          X509_REQ_get_version(X509_REQ *x);',
+    'X509_REQ *  X509_REQ_new();',
+    'int              X509_REQ_set_pubkey(X509_REQ *x, EVP_PKEY *pkey);',
+    'int X509_REQ_sign(X509_REQ *x, EVP_PKEY *pkey, const EVP_MD *md);',
+    'EVP_PKEY *       X509_REQ_get_pubkey(X509_REQ *req);',
+    'X509_NAME *    X509_REQ_get_subject_name(X509_REQ *req);',
+
     # ASN1 serialization
     'int i2d_X509_bio(BIO *bp, X509 *x);',
     'X509 *d2i_X509_bio(BIO *bp, X509 **x);',
