@@ -20,6 +20,7 @@ TYPES = [
     """,
 
     'typedef ... X509_EXTENSION;',
+    "typedef ... X509_EXTENSIONS;",
 
     'typedef ... X509_REQ;',
     'typedef ... X509_CRL;',
@@ -30,6 +31,7 @@ TYPES = [
         ...;
     } X509;
     """,
+
 ]
 
 FUNCTIONS = [
@@ -74,6 +76,10 @@ FUNCTIONS = [
     'int X509_REQ_sign(X509_REQ *x, EVP_PKEY *pkey, const EVP_MD *md);',
     'EVP_PKEY *       X509_REQ_get_pubkey(X509_REQ *req);',
     'X509_NAME *    X509_REQ_get_subject_name(X509_REQ *req);',
+    'int X509_REQ_add_extensions(X509_REQ *req, X509_EXTENSIONS *exts);',
+
+    'X509_EXTENSIONS * sk_X509_EXTENSION_new_null();',
+    'void sk_X509_EXTENSION_push(X509_EXTENSIONS * stack, X509_EXTENSION * ext);',
 
     # ASN1 serialization
     'int i2d_X509_bio(BIO *bp, X509 *x);',
