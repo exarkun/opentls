@@ -77,6 +77,7 @@ FUNCTIONS = [
     'EVP_PKEY *       X509_REQ_get_pubkey(X509_REQ *req);',
     'X509_NAME *    X509_REQ_get_subject_name(X509_REQ *req);',
     'int X509_REQ_add_extensions(X509_REQ *req, X509_EXTENSIONS *exts);',
+    'int         X509_REQ_print_ex(BIO *bp, X509_REQ *x, unsigned long nmflag, unsigned long cflag);',
 
     'X509_EXTENSIONS * sk_X509_EXTENSION_new_null();',
     'void sk_X509_EXTENSION_push(X509_EXTENSIONS * stack, X509_EXTENSION * ext);',
@@ -87,6 +88,9 @@ FUNCTIONS = [
     # ASN1 serialization
     'int i2d_X509_bio(BIO *bp, X509 *x);',
     'X509 *d2i_X509_bio(BIO *bp, X509 **x);',
+
+    'int i2d_X509_REQ_bio(BIO *bp,X509_REQ *req);',
+    'X509_REQ *d2i_X509_REQ_bio(BIO *bp,X509_REQ **req);',
 
     'int i2d_PrivateKey_bio(BIO *bp, EVP_PKEY *pkey);',
     'EVP_PKEY *d2i_PrivateKey_bio(BIO *bp, EVP_PKEY **a);',
