@@ -5,6 +5,8 @@ INCLUDES = [
 TYPES = [
     """
     typedef struct {
+        X509 *issuer_cert;
+        X509 *subject_cert;
         ...;
     } X509V3_CTX;
     """,

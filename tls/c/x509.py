@@ -81,6 +81,9 @@ FUNCTIONS = [
     'X509_EXTENSIONS * sk_X509_EXTENSION_new_null();',
     'void sk_X509_EXTENSION_push(X509_EXTENSIONS * stack, X509_EXTENSION * ext);',
 
+    'int X509V3_EXT_print(BIO *out, X509_EXTENSION *ext, unsigned long flag, int indent);',
+    'ASN1_OCTET_STRING *X509_EXTENSION_get_data(X509_EXTENSION *ne);',
+
     # ASN1 serialization
     'int i2d_X509_bio(BIO *bp, X509 *x);',
     'X509 *d2i_X509_bio(BIO *bp, X509 **x);',
