@@ -115,6 +115,7 @@ FUNCTIONS = [
     'int sk_X509_EXTENSION_num(X509_EXTENSIONS * stack);',
     'X509_EXTENSION * sk_X509_EXTENSION_value(X509_EXTENSIONS * stack, int index);',
     'void sk_X509_EXTENSION_push(X509_EXTENSIONS * stack, X509_EXTENSION * ext);',
+    'void sk_X509_EXTENSION_delete(X509_EXTENSIONS * stack, int index);',
 
     'int X509V3_EXT_print(BIO *out, X509_EXTENSION *ext, unsigned long flag, int indent);',
     'ASN1_OCTET_STRING *X509_EXTENSION_get_data(X509_EXTENSION *ne);',
