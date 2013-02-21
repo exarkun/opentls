@@ -59,6 +59,7 @@ FUNCTIONS = [
     'int i2a_ASN1_INTEGER(BIO *bp, ASN1_INTEGER *a);',
 
     # ASN1 TIME
+    'ASN1_TIME * ASN1_TIME_new();',
     'ASN1_GENERALIZEDTIME *ASN1_TIME_to_generalizedtime(ASN1_TIME *t, ASN1_GENERALIZEDTIME **out);',
     'ASN1_TIME * M_ASN1_TIME_dup(void* time);',
 

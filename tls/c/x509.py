@@ -133,7 +133,12 @@ FUNCTIONS = [
     'X509_CRL *d2i_X509_CRL_bio(BIO *bp,X509_CRL **crl);',
     'X509_CRL *X509_CRL_new();',
     'int X509_CRL_add0_revoked(X509_CRL *crl, X509_REVOKED *rev);',
-
+    'int i2d_X509_CRL_bio(BIO *bp,X509_CRL *crl);',
+    'int X509_CRL_print(BIO *out, X509_CRL *x);',
+    'int X509_CRL_set_lastUpdate(X509_CRL *x, const ASN1_TIME *tm);',
+    'int X509_CRL_set_nextUpdate(X509_CRL *x, const ASN1_TIME *tm);',
+    'int X509_CRL_set_issuer_name(X509_CRL *x, X509_NAME *name);',
+    'int X509_CRL_sign(X509_CRL *x, EVP_PKEY *pkey, const EVP_MD *md);',
 
     # ASN1 serialization
     'int i2d_X509_bio(BIO *bp, X509 *x);',

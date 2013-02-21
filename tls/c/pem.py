@@ -33,4 +33,6 @@ FUNCTIONS = [
     X509_CRL *PEM_read_bio_X509_CRL(BIO *bp, X509_CRL **x,
                                     pem_password_cb *cb, void *u);
     """,
+
+    "int PEM_write_bio_X509_CRL(BIO *bp, X509_CRL *x);",
 ]
