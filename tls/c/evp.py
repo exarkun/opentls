@@ -29,6 +29,14 @@ FUNCTIONS = [
     'int           EVP_PKEY_bits(EVP_PKEY *pkey);',
     'RSA *EVP_PKEY_get1_RSA(EVP_PKEY *pkey);',
 
+    'int  EVP_SignInit(EVP_MD_CTX *ctx, const EVP_MD *type);',
+    'int  EVP_SignUpdate(EVP_MD_CTX *ctx,const void *d, size_t cnt);',
+    'int  EVP_SignFinal(EVP_MD_CTX *ctx,unsigned char *md,unsigned int *s, EVP_PKEY *pkey);',
+
+    'int  EVP_VerifyInit(EVP_MD_CTX *ctx, const EVP_MD *type);',
+    'int  EVP_VerifyUpdate(EVP_MD_CTX *ctx,const void *d, size_t cnt);',
+    'int  EVP_VerifyFinal(EVP_MD_CTX *ctx,unsigned char *md,unsigned int s, EVP_PKEY *pkey);',
+
     'int EVP_PKEY_assign_RSA(EVP_PKEY *pkey,RSA *key);',
     'int EVP_PKEY_assign_DSA(EVP_PKEY *pkey,DSA *key);',
 
