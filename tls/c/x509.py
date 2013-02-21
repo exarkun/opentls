@@ -80,6 +80,7 @@ FUNCTIONS = [
     'EVP_PKEY *  X509_get_pubkey(X509 *x);',
     'int                 X509_set_pubkey(X509 *x, EVP_PKEY *pkey);',
 
+    'unsigned char * X509_alias_get0(X509 *x, int *len);',
     'int X509_sign(X509 *x, EVP_PKEY *pkey, const EVP_MD *md);',
 
     'int X509_digest(const X509 *data,const EVP_MD *type, unsigned char *md, unsigned int *len);',
@@ -112,6 +113,11 @@ FUNCTIONS = [
     'X509_NAME *    X509_REQ_get_subject_name(X509_REQ *req);',
     'int X509_REQ_add_extensions(X509_REQ *req, X509_EXTENSIONS *exts);',
     'int         X509_REQ_print_ex(BIO *bp, X509_REQ *x, unsigned long nmflag, unsigned long cflag);',
+
+    'struct stack_st_X509 * sk_X509_new_null();',
+    'int sk_X509_num(struct stack_st_X509 * stack);',
+    'void sk_X509_push(struct stack_st_X509 * stack, X509 * x509);',
+    'X509 * sk_X509_value(struct stack_st_X509 * stack, int index);',
 
     'X509_EXTENSIONS * sk_X509_EXTENSION_new_null();',
     'int sk_X509_EXTENSION_num(X509_EXTENSIONS * stack);',

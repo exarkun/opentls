@@ -114,6 +114,7 @@ class API(object):
         'openssl',
         'nid',
         'pem',
+        'pkcs12',
         'pkcs5',
         'rand',
         'rsa',
