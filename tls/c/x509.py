@@ -64,6 +64,8 @@ TYPES = [
     } X509;
     """,
 
+    "typedef ... NETSCAPE_SPKI;",
+
 ]
 
 FUNCTIONS = [
@@ -139,6 +141,13 @@ FUNCTIONS = [
     'int X509_CRL_set_nextUpdate(X509_CRL *x, const ASN1_TIME *tm);',
     'int X509_CRL_set_issuer_name(X509_CRL *x, X509_NAME *name);',
     'int X509_CRL_sign(X509_CRL *x, EVP_PKEY *pkey, const EVP_MD *md);',
+
+    'int NETSCAPE_SPKI_verify(NETSCAPE_SPKI *a, EVP_PKEY *r);',
+    'int NETSCAPE_SPKI_sign(NETSCAPE_SPKI *x, EVP_PKEY *pkey, const EVP_MD *md);',
+    'char * NETSCAPE_SPKI_b64_encode(NETSCAPE_SPKI *x);',
+    'EVP_PKEY *NETSCAPE_SPKI_get_pubkey(NETSCAPE_SPKI *x);',
+    'int NETSCAPE_SPKI_set_pubkey(NETSCAPE_SPKI *x, EVP_PKEY *pkey);',
+    'NETSCAPE_SPKI * NETSCAPE_SPKI_new();',
 
     # ASN1 serialization
     'int i2d_X509_bio(BIO *bp, X509 *x);',
