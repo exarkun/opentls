@@ -3,12 +3,14 @@ INCLUDES = [
 ]
 
 TYPES = [
+    'typedef int ASN1_BOOLEAN;',
     'typedef ... ASN1_INTEGER;',
     'typedef ... ASN1_OCTET_STRING;',
     'typedef ... ASN1_OBJECT;',
     'typedef ... ASN1_STRING;',
     'typedef ... ASN1_TYPE;',
     'typedef ... ASN1_GENERALIZEDTIME;',
+    'typedef ... ASN1_ENUMERATED;',
 
     """
     typedef struct {
@@ -54,9 +56,11 @@ FUNCTIONS = [
     'int ASN1_INTEGER_set(ASN1_INTEGER *a, long v);',
     'long ASN1_INTEGER_get(ASN1_INTEGER *a);',
     'BIGNUM *ASN1_INTEGER_to_BN(const ASN1_INTEGER *ai,BIGNUM *bn);',
+    'int i2a_ASN1_INTEGER(BIO *bp, ASN1_INTEGER *a);',
 
     # ASN1 TIME
     'ASN1_GENERALIZEDTIME *ASN1_TIME_to_generalizedtime(ASN1_TIME *t, ASN1_GENERALIZEDTIME **out);',
+    'ASN1_TIME * M_ASN1_TIME_dup(void* time);',
 
     # ASN1 UTCTIME
     'int ASN1_UTCTIME_cmp_time_t(const ASN1_UTCTIME *s, time_t t);',
@@ -65,4 +69,8 @@ FUNCTIONS = [
     'int ASN1_GENERALIZEDTIME_set_string(ASN1_GENERALIZEDTIME *s, const char *str);',
     'void ASN1_GENERALIZEDTIME_free(ASN1_GENERALIZEDTIME *s);',
     'int ASN1_GENERALIZEDTIME_check(ASN1_GENERALIZEDTIME *a);',
+
+    # ASN1 ENUMERATED
+    'ASN1_ENUMERATED * ASN1_ENUMERATED_new();',
+    'int ASN1_ENUMERATED_set(ASN1_ENUMERATED *a, long v);',
 ]

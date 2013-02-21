@@ -28,4 +28,9 @@ FUNCTIONS = [
     X509_REQ *PEM_read_bio_X509_REQ(BIO *bp, X509_REQ **x,
                                     pem_password_cb *cb, void *u);
     """,
+
+    """
+    X509_CRL *PEM_read_bio_X509_CRL(BIO *bp, X509_CRL **x,
+                                    pem_password_cb *cb, void *u);
+    """,
 ]

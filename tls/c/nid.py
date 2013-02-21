@@ -20,4 +20,6 @@ TYPES = [
     'static const int NID_ecdsa_with_SHA256;',
     'static const int NID_ecdsa_with_SHA384;',
     'static const int NID_ecdsa_with_SHA512;',
+
+    'static const int NID_crl_reason;',
 ]

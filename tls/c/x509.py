@@ -19,11 +19,43 @@ TYPES = [
     } X509_CINF;
     """,
 
-    'typedef ... X509_EXTENSION;',
-    "typedef ... X509_EXTENSIONS;",
+    """
+    typedef struct {
+        ASN1_OBJECT *object;
+        ASN1_BOOLEAN critical;
+        ASN1_OCTET_STRING *value;
+    } X509_EXTENSION;
+    """,
+
+    'typedef ... X509_EXTENSIONS;',
 
     'typedef ... X509_REQ;',
-    'typedef ... X509_CRL;',
+
+    'typedef ... x509_revoked_st;',
+
+    """
+    typedef struct {
+        ASN1_INTEGER *serialNumber;
+        ASN1_TIME *revocationDate;
+        X509_EXTENSIONS *extensions;
+        int sequence;
+        ...;
+    } X509_REVOKED;
+    """,
+
+    """
+    typedef struct {
+        struct x509_revoked_st *revoked;
+        ...;
+    } X509_CRL_INFO;
+    """,
+
+    """
+    typedef struct {
+        X509_CRL_INFO *crl;
+        ...;
+    } X509_CRL;
+    """,
 
     """
     typedef struct {
@@ -80,10 +112,27 @@ FUNCTIONS = [
     'int         X509_REQ_print_ex(BIO *bp, X509_REQ *x, unsigned long nmflag, unsigned long cflag);',
 
     'X509_EXTENSIONS * sk_X509_EXTENSION_new_null();',
+    'int sk_X509_EXTENSION_num(X509_EXTENSIONS * stack);',
+    'X509_EXTENSION * sk_X509_EXTENSION_value(X509_EXTENSIONS * stack, int index);',
     'void sk_X509_EXTENSION_push(X509_EXTENSIONS * stack, X509_EXTENSION * ext);',
 
     'int X509V3_EXT_print(BIO *out, X509_EXTENSION *ext, unsigned long flag, int indent);',
     'ASN1_OCTET_STRING *X509_EXTENSION_get_data(X509_EXTENSION *ne);',
+
+    'X509_REVOKED *X509_REVOKED_new();',
+    'int sk_X509_REVOKED_num(struct x509_revoked_st *revoked);',
+    'X509_REVOKED * sk_X509_REVOKED_value(struct x509_revoked_st *revoked, int index);',
+    'int X509_REVOKED_set_serialNumber(X509_REVOKED *x, ASN1_INTEGER *serial);',
+
+    """
+    int         X509_REVOKED_add1_ext_i2d(X509_REVOKED *x, int nid, void *value, int crit,
+                                          unsigned long flags);
+    """,
+
+    'X509_CRL *d2i_X509_CRL_bio(BIO *bp,X509_CRL **crl);',
+    'X509_CRL *X509_CRL_new();',
+    'int X509_CRL_add0_revoked(X509_CRL *crl, X509_REVOKED *rev);',
+
 
     # ASN1 serialization
     'int i2d_X509_bio(BIO *bp, X509 *x);',
