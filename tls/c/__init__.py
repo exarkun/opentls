@@ -116,6 +116,7 @@ class API(object):
         'pem',
         'pkcs12',
         'pkcs5',
+        'pkcs7',
         'rand',
         'rsa',
         'ssl',
