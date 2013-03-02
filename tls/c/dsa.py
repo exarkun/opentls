@@ -13,5 +13,6 @@ FUNCTIONS = [
                                        int *counter_ret, unsigned long *h_ret,void
                                        (*callback)(int, int, void *),void *cb_arg);
     """,
-    'int   DSA_generate_key(DSA *a);',
+    "int   DSA_generate_key(DSA *a);",
+    "void DSA_free(DSA *dsa);",
     ]

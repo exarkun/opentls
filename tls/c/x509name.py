@@ -22,4 +22,5 @@ FUNCTIONS = [
     'int          X509_NAME_cmp(const X509_NAME *a, const X509_NAME *b);',
     'char *           X509_NAME_oneline(X509_NAME *a,char *buf,int size);',
     'X509_NAME *X509_NAME_dup(X509_NAME *xn);',
+    'void X509_NAME_free(X509_NAME *xn);',
 ]

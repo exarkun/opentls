@@ -112,6 +112,7 @@ class API(object):
         'hmac',
         'obj',
         'openssl',
+        'mem_dbg',
         'nid',
         'pem',
         'pkcs12',
