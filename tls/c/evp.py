@@ -37,6 +37,9 @@ FUNCTIONS = [
     'int  EVP_VerifyUpdate(EVP_MD_CTX *ctx,const void *d, size_t cnt);',
     'int  EVP_VerifyFinal(EVP_MD_CTX *ctx,unsigned char *md,unsigned int s, EVP_PKEY *pkey);',
 
+    'int EVP_MD_CTX_cleanup(EVP_MD_CTX *ctx);',
+    'void EVP_MD_CTX_destroy(EVP_MD_CTX *ctx);',
+
     'int EVP_PKEY_assign_RSA(EVP_PKEY *pkey,RSA *key);',
     'int EVP_PKEY_assign_DSA(EVP_PKEY *pkey,DSA *key);',
 

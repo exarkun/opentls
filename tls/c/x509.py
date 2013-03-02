@@ -117,6 +117,7 @@ FUNCTIONS = [
     'int         X509_REQ_print_ex(BIO *bp, X509_REQ *x, unsigned long nmflag, unsigned long cflag);',
 
     'struct stack_st_X509 * sk_X509_new_null();',
+    'void sk_X509_free(struct stack_st_X509 * stack);',
     'int sk_X509_num(struct stack_st_X509 * stack);',
     'void sk_X509_push(struct stack_st_X509 * stack, X509 * x509);',
     'X509 * sk_X509_value(struct stack_st_X509 * stack, int index);',
@@ -132,6 +133,8 @@ FUNCTIONS = [
     'ASN1_OCTET_STRING *X509_EXTENSION_get_data(X509_EXTENSION *ne);',
 
     'X509_REVOKED *X509_REVOKED_new();',
+    'void          X509_REVOKED_free(X509_REVOKED *x);',
+
     'int sk_X509_REVOKED_num(struct x509_revoked_st *revoked);',
     'X509_REVOKED * sk_X509_REVOKED_value(struct x509_revoked_st *revoked, int index);',
     'int X509_REVOKED_set_serialNumber(X509_REVOKED *x, ASN1_INTEGER *serial);',

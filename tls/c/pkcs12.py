@@ -18,6 +18,7 @@ FUNCTIONS = [
                           int mac_iter, int keytype);
     """,
 
+    "void PKCS12_free(PKCS12 *p12);",
     "PKCS12 *d2i_PKCS12_bio(BIO *bp, PKCS12 **p12);",
     "int i2d_PKCS12_bio(BIO *bp, PKCS12 *p12);",
 ]
