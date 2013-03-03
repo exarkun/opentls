@@ -146,6 +146,7 @@ FUNCTIONS = [
 
     'X509_CRL *d2i_X509_CRL_bio(BIO *bp,X509_CRL **crl);',
     'X509_CRL *X509_CRL_new();',
+    'void X509_CRL_free(X509_CRL *crl);',
     'int X509_CRL_add0_revoked(X509_CRL *crl, X509_REVOKED *rev);',
     'int i2d_X509_CRL_bio(BIO *bp,X509_CRL *crl);',
     'int X509_CRL_print(BIO *out, X509_CRL *x);',
@@ -160,6 +161,7 @@ FUNCTIONS = [
     'EVP_PKEY *NETSCAPE_SPKI_get_pubkey(NETSCAPE_SPKI *x);',
     'int NETSCAPE_SPKI_set_pubkey(NETSCAPE_SPKI *x, EVP_PKEY *pkey);',
     'NETSCAPE_SPKI * NETSCAPE_SPKI_new();',
+    'void NETSCAPE_SPKI_free(NETSCAPE_SPKI *x);',
 
     # ASN1 serialization
     'int i2d_X509_bio(BIO *bp, X509 *x);',

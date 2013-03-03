@@ -12,8 +12,9 @@ TEARDOWN = [
 ]
 
 TYPES = [
-'struct ERR_string_data_st { unsigned long error; const char *string; };',
-'typedef struct ERR_string_data_st ERR_STRING_DATA;',
+    'struct ERR_string_data_st { unsigned long error; const char *string; };',
+    'typedef struct ERR_string_data_st ERR_STRING_DATA;',
+    'typedef ... CRYPTO_THREADID;',
 ]
 
 FUNCTIONS = [
@@ -44,4 +45,5 @@ FUNCTIONS = [
     'int ERR_GET_LIB(unsigned long e);',
     'int ERR_GET_FUNC(unsigned long e);',
     'int ERR_GET_REASON(unsigned long e);',
+    'void ERR_remove_thread_state(const CRYPTO_THREADID *id);',
 ]

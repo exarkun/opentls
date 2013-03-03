@@ -103,6 +103,7 @@ class API(object):
         'bio_filter',
         'bio_sink',
         'conf',
+        'crypto',
         'dsa',
         'err',
         'evp',
