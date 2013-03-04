@@ -9,6 +9,29 @@ SETUP = [
 TYPES = [
     'static const int SSL_FILETYPE_PEM;',
     'static const int SSL_FILETYPE_ASN1;',
+
+    'static const int SSL_SENT_SHUTDOWN;',
+    'static const int SSL_RECEIVED_SHUTDOWN;',
+
+    'static const int SSL_OP_NO_SSLv2;',
+    'static const int SSL_OP_NO_SSLv3;',
+
+    'static const int SSL_OP_SINGLE_DH_USE;',
+
+    'static const int SSL_VERIFY_PEER;',
+    'static const int SSL_VERIFY_FAIL_IF_NO_PEER_CERT;',
+    'static const int SSL_VERIFY_CLIENT_ONCE;',
+    'static const int SSL_VERIFY_NONE;',
+
+    'static const int SSL_SESS_CACHE_OFF;',
+    'static const int SSL_SESS_CACHE_CLIENT;',
+    'static const int SSL_SESS_CACHE_SERVER;',
+    'static const int SSL_SESS_CACHE_BOTH;',
+    'static const int SSL_SESS_CACHE_NO_AUTO_CLEAR;',
+    'static const int SSL_SESS_CACHE_NO_INTERNAL_LOOKUP;',
+    'static const int SSL_SESS_CACHE_NO_INTERNAL_STORE;',
+    'static const int SSL_SESS_CACHE_NO_INTERNAL;',
+
     'typedef ... SSL_METHOD;',
     'typedef ... SSL_CTX;',
 ]
