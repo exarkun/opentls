@@ -128,7 +128,6 @@ class API(object):
         'x509',
         'x509name',
         'x509v3',
-        'x509_vfy',
     ]
 
     __instance = None
