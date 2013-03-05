@@ -65,9 +65,6 @@ TYPES = [
     """,
 
     "typedef ... NETSCAPE_SPKI;",
-
-    "typedef ... X509_STORE_CTX;",
-
 ]
 
 FUNCTIONS = [
