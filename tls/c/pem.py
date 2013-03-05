@@ -37,4 +37,5 @@ FUNCTIONS = [
     "int PEM_write_bio_X509_CRL(BIO *bp, X509_CRL *x);",
 
     "PKCS7 *PEM_read_bio_PKCS7(BIO *bp, PKCS7 **x, pem_password_cb *cb, void *u);",
+    "DH *PEM_read_bio_DHparams(BIO *bp, DH **x, pem_password_cb *cb, void *u);",
 ]

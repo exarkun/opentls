@@ -34,6 +34,7 @@ TYPES = [
 
     'typedef ... SSL_METHOD;',
     'typedef ... SSL_CTX;',
+    'typedef ... SSL;',
 ]
 
 FUNCTIONS = [
@@ -54,7 +55,50 @@ FUNCTIONS = [
     'const SSL_METHOD *SSLv23_method(void);',
     'const SSL_METHOD *SSLv23_server_method(void);',
     'const SSL_METHOD *SSLv23_client_method(void);',
+
+    # SSL
+    'int SSL_get_verify_mode(const SSL *ssl);',
+    'void SSL_set_verify_depth(SSL *s, int depth);',
+    'int SSL_get_verify_depth(const SSL *ssl);',
+    'int (*SSL_get_verify_callback(const SSL *ssl))(int, X509_STORE_CTX *);',
+    'long SSL_set_mode(SSL *ssl, long mode);',
+    'long SSL_get_mode(SSL *ssl);',
+
     # context
     'SSL_CTX *SSL_CTX_new(SSL_METHOD *method);',
     'void SSL_CTX_free(SSL_CTX *ctx);',
+
+    'long SSL_CTX_set_timeout(SSL_CTX *ctx, long t);',
+    'long SSL_CTX_get_timeout(SSL_CTX *ctx);',
+
+    """
+    void SSL_CTX_set_verify(SSL_CTX *ctx, int mode,
+                            int (*verify_callback)(int, X509_STORE_CTX *));
+    """,
+    'void SSL_CTX_set_verify_depth(SSL_CTX *ctx,int depth);',
+
+    'int (*SSL_CTX_get_verify_callback(const SSL_CTX *ctx))(int, X509_STORE_CTX *);',
+
+    'long SSL_CTX_set_mode(SSL_CTX *ctx, long mode);',
+    'long SSL_CTX_get_mode(SSL_CTX *ctx);',
+
+    'long SSL_CTX_set_session_cache_mode(SSL_CTX *ctx, long mode);',
+    'long SSL_CTX_get_session_cache_mode(SSL_CTX *ctx);',
+
+    'int SSL_CTX_get_verify_mode(const SSL_CTX *ctx);',
+    'int SSL_CTX_get_verify_depth(const SSL_CTX *ctx);',
+
+    """
+    int SSL_CTX_load_verify_locations(SSL_CTX *ctx, const char *CAfile,
+                                      const char *CApath);
+    """,
+    "long SSL_CTX_set_tmp_dh(SSL_CTX *ctx, DH *dh);",
+
+    "long SSL_CTX_add_extra_chain_cert(SSL_CTX *ctx, X509 *x509);",
+
+    "void SSL_CTX_set_default_passwd_cb(SSL_CTX *ctx, pem_password_cb *cb);",
+    "void SSL_CTX_set_default_passwd_cb_userdata(SSL_CTX *ctx, void *u);",
+
+    "int SSL_CTX_use_PrivateKey(SSL_CTX *ctx, EVP_PKEY *pkey);",
+    "int SSL_CTX_use_PrivateKey_file(SSL_CTX *ctx, const char *file, int type);",
 ]

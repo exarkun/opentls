@@ -104,6 +104,7 @@ class API(object):
         'bio_sink',
         'conf',
         'crypto',
+        'dh',
         'dsa',
         'err',
         'evp',

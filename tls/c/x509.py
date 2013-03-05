@@ -66,11 +66,14 @@ TYPES = [
 
     "typedef ... NETSCAPE_SPKI;",
 
+    "typedef ... X509_STORE_CTX;",
+
 ]
 
 FUNCTIONS = [
     'X509 *X509_new(void);',
     'void X509_free(X509 *a);',
+    'X509 *X509_dup(X509 *a);',
 
     'int X509_print_ex(BIO *bp,X509 *x, unsigned long nmflag, unsigned long cflag);',
 
