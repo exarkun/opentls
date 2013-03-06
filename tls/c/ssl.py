@@ -251,6 +251,7 @@ FUNCTIONS = [
     "void SSL_CTX_set_default_passwd_cb_userdata(SSL_CTX *ctx, void *u);",
 
     "int SSL_CTX_use_certificate(SSL_CTX *ctx, X509 *x);",
+    "int SSL_CTX_use_certificate_file(SSL_CTX *ctx, const char *file, int type);",
     "int SSL_CTX_use_certificate_chain_file(SSL_CTX *ctx, const char *file);",
 
     "int SSL_CTX_use_PrivateKey(SSL_CTX *ctx, EVP_PKEY *pkey);",

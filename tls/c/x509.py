@@ -112,6 +112,7 @@ FUNCTIONS = [
     'void        X509_REQ_free(X509_REQ *x);',
     'int              X509_REQ_set_pubkey(X509_REQ *x, EVP_PKEY *pkey);',
     'int X509_REQ_sign(X509_REQ *x, EVP_PKEY *pkey, const EVP_MD *md);',
+    'int X509_REQ_verify(X509_REQ *a, EVP_PKEY *r);',
     'EVP_PKEY *       X509_REQ_get_pubkey(X509_REQ *req);',
     'X509_NAME *    X509_REQ_get_subject_name(X509_REQ *req);',
     'int X509_REQ_add_extensions(X509_REQ *req, X509_EXTENSIONS *exts);',
