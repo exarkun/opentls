@@ -88,6 +88,9 @@ TYPES = [
     'static const int SSL_CB_HANDSHAKE_DONE;',
 
     'static const int SSL_MODE_RELEASE_BUFFERS;',
+    'static const int SSL_MODE_ENABLE_PARTIAL_WRITE;',
+    'static const int SSL_MODE_ACCEPT_MOVING_WRITE_BUFFER;',
+    'static const int SSL_MODE_AUTO_RETRY;',
 
     'static const int SSL3_RANDOM_SIZE;',
 
@@ -168,6 +171,8 @@ FUNCTIONS = [
     'void (*SSL_get_info_callback(const SSL *ssl))();',
 
     'SSL *SSL_new(SSL_CTX *ctx);',
+    'void SSL_free(SSL *ssl);',
+
     'int SSL_set_fd(SSL *ssl, int fd);',
     'void SSL_set_bio(SSL *ssl, BIO *rbio, BIO *wbio);',
 
