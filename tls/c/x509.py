@@ -64,6 +64,7 @@ TYPES = [
     } X509;
     """,
 
+    "typedef ... X509_STORE;",
     "typedef ... NETSCAPE_SPKI;",
 ]
 
@@ -119,13 +120,13 @@ FUNCTIONS = [
     'struct stack_st_X509 * sk_X509_new_null();',
     'void sk_X509_free(struct stack_st_X509 * stack);',
     'int sk_X509_num(struct stack_st_X509 * stack);',
-    'void sk_X509_push(struct stack_st_X509 * stack, X509 * x509);',
+    'int sk_X509_push(struct stack_st_X509 * stack, X509 * x509);',
     'X509 * sk_X509_value(struct stack_st_X509 * stack, int index);',
 
     'X509_EXTENSIONS * sk_X509_EXTENSION_new_null();',
     'int sk_X509_EXTENSION_num(X509_EXTENSIONS * stack);',
     'X509_EXTENSION * sk_X509_EXTENSION_value(X509_EXTENSIONS * stack, int index);',
-    'void sk_X509_EXTENSION_push(X509_EXTENSIONS * stack, X509_EXTENSION * ext);',
+    'int sk_X509_EXTENSION_push(X509_EXTENSIONS * stack, X509_EXTENSION * ext);',
     'void sk_X509_EXTENSION_delete(X509_EXTENSIONS * stack, int index);',
     'void sk_X509_EXTENSION_free(X509_EXTENSIONS * stack);',
 
@@ -175,4 +176,9 @@ FUNCTIONS = [
 
     'ASN1_INTEGER *      X509_get_serialNumber(X509 *x);',
     'int                 X509_set_serialNumber(X509 *x, ASN1_INTEGER *serial);',
+
+    # X509_STORE
+    "X509_STORE *X509_STORE_new(void );",
+    "void X509_STORE_free(X509_STORE *store);",
+    "int X509_STORE_add_cert(X509_STORE *ctx, X509 *x);",
 ]

@@ -23,8 +23,33 @@ TYPES = [
 
     'static const int SSL_OP_NO_SSLv2;',
     'static const int SSL_OP_NO_SSLv3;',
+    'static const int SSL_OP_NO_TLSv1;',
 
     'static const int SSL_OP_SINGLE_DH_USE;',
+    'static const int SSL_OP_EPHEMERAL_RSA;',
+    'static const int SSL_OP_MICROSOFT_SESS_ID_BUG;',
+    'static const int SSL_OP_NETSCAPE_CHALLENGE_BUG;',
+    'static const int SSL_OP_NETSCAPE_REUSE_CIPHER_CHANGE_BUG;',
+    'static const int SSL_OP_SSLREF2_REUSE_CERT_TYPE_BUG;',
+    'static const int SSL_OP_MICROSOFT_BIG_SSLV3_BUFFER;',
+    'static const int SSL_OP_MSIE_SSLV2_RSA_PADDING;',
+    'static const int SSL_OP_SSLEAY_080_CLIENT_DH_BUG;',
+    'static const int SSL_OP_TLS_D5_BUG;',
+    'static const int SSL_OP_TLS_BLOCK_PADDING_BUG;',
+    'static const int SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS;',
+    'static const int SSL_OP_CIPHER_SERVER_PREFERENCE;',
+    'static const int SSL_OP_TLS_ROLLBACK_BUG;',
+    'static const int SSL_OP_PKCS1_CHECK_1;',
+    'static const int SSL_OP_PKCS1_CHECK_2;',
+    'static const int SSL_OP_NETSCAPE_CA_DN_BUG;',
+    'static const int SSL_OP_NETSCAPE_DEMO_CIPHER_CHANGE_BUG;',
+    'static const int SSL_OP_NO_COMPRESSION;',
+
+    'static const int SSL_OP_NO_QUERY_MTU;',
+    'static const int SSL_OP_COOKIE_EXCHANGE;',
+    'static const int SSL_OP_NO_TICKET;',
+
+    'static const int SSL_OP_ALL;',
 
     'static const int SSL_VERIFY_PEER;',
     'static const int SSL_VERIFY_FAIL_IF_NO_PEER_CERT;',
@@ -40,15 +65,67 @@ TYPES = [
     'static const int SSL_SESS_CACHE_NO_INTERNAL_STORE;',
     'static const int SSL_SESS_CACHE_NO_INTERNAL;',
 
+    'static const int SSL_ST_CONNECT;',
+    'static const int SSL_ST_ACCEPT;',
+    'static const int SSL_ST_MASK;',
+    'static const int SSL_ST_INIT;',
+    'static const int SSL_ST_BEFORE;',
+    'static const int SSL_ST_OK;',
+    'static const int SSL_ST_RENEGOTIATE;',
+
+    'static const int SSL_CB_LOOP;',
+    'static const int SSL_CB_EXIT;',
+    'static const int SSL_CB_READ;',
+    'static const int SSL_CB_WRITE;',
+    'static const int SSL_CB_ALERT;',
+    'static const int SSL_CB_READ_ALERT;',
+    'static const int SSL_CB_WRITE_ALERT;',
+    'static const int SSL_CB_ACCEPT_LOOP;',
+    'static const int SSL_CB_ACCEPT_EXIT;',
+    'static const int SSL_CB_CONNECT_LOOP;',
+    'static const int SSL_CB_CONNECT_EXIT;',
+    'static const int SSL_CB_HANDSHAKE_START;',
+    'static const int SSL_CB_HANDSHAKE_DONE;',
+
+    'static const int SSL_MODE_RELEASE_BUFFERS;',
+
+    'static const int SSL3_RANDOM_SIZE;',
+
     'typedef ... X509_STORE_CTX;',
     'static const int X509_V_OK;',
 
     'typedef ... SSL_METHOD;',
     'typedef ... SSL_CTX;',
-    'typedef ... SSL;',
+
+    """
+    typedef struct {
+	int master_key_length;
+	unsigned char master_key[...];
+        ...;
+    } SSL_SESSION;
+    """,
+
+    """
+    typedef struct {
+	unsigned char server_random[...];
+	unsigned char client_random[...];
+        ...;
+    } SSL3_STATE;
+    """,
+
+    """
+    typedef struct {
+        SSL3_STATE *s3;
+        SSL_SESSION *session;
+        ...;
+    } SSL;
+    """
+
+    'static const int TLSEXT_NAMETYPE_host_name;',
 
     'typedef int verify_callback(int preverify_ok, X509_STORE_CTX *x509_ctx);',
-    'typedef void info_callback(SSL *ssl, int where, int ret);',
+    'typedef void info_callback(const SSL *ssl, int where, int ret);',
+    'typedef int tlsext_servername_callback(const SSL *ssl, int *alert, void *arg);',
 ]
 
 FUNCTIONS = [
@@ -71,12 +148,21 @@ FUNCTIONS = [
     'const SSL_METHOD *SSLv23_client_method(void);',
 
     # SSL
+    "SSL_CTX *SSL_set_SSL_CTX(SSL *ssl, SSL_CTX* ctx);",
+    "SSL_SESSION *SSL_get1_session(SSL *ssl);",
+    "int SSL_set_session(SSL *ssl, SSL_SESSION *session);",
+
     'int SSL_get_verify_mode(const SSL *ssl);',
     'void SSL_set_verify_depth(SSL *s, int depth);',
     'int SSL_get_verify_depth(const SSL *ssl);',
     'int (*SSL_get_verify_callback(const SSL *ssl))(int, X509_STORE_CTX *);',
+
     'long SSL_set_mode(SSL *ssl, long mode);',
     'long SSL_get_mode(SSL *ssl);',
+
+    'long SSL_set_options(SSL *ssl, long options);',
+    'long SSL_clear_options(SSL *ssl, long options);',
+    'long SSL_get_options(SSL *ssl);',
 
     'void SSL_set_info_callback(SSL *ssl, void (*callback)());',
     'void (*SSL_get_info_callback(const SSL *ssl))();',
@@ -88,9 +174,23 @@ FUNCTIONS = [
     'void SSL_set_connect_state(SSL *ssl);',
     'void SSL_set_accept_state(SSL *ssl);',
 
+    'void SSL_set_shutdown(SSL *ssl, int mode);',
+    'int SSL_get_shutdown(const SSL *ssl);',
+
+    'int SSL_pending(const SSL *ssl);',
+
+    'void SSL_set_tlsext_host_name(SSL *ssl, char *name);',
+    'const char *SSL_get_servername(const SSL *s, const int type);',
+
     'int SSL_write(SSL *ssl, const void *buf, int num);',
     'int SSL_read(SSL *ssl, void *buf, int num);',
     'X509 *SSL_get_peer_certificate(const SSL *ssl);',
+    'struct stack_st_X509 *SSL_get_peer_cert_chain(const SSL *ssl);',
+
+    'int SSL_want_read(const SSL *ssl);',
+    'int SSL_want_write(const SSL *ssl);',
+
+    'int SSL_total_renegotiations(const SSL *ssl);',
 
     'int SSL_get_error(const SSL *ssl, int ret);',
     'int SSL_do_handshake(SSL *ssl);',
@@ -100,6 +200,8 @@ FUNCTIONS = [
 
     'struct stack_st_SSL_CIPHER *SSL_get_ciphers(const SSL *ssl);',
     'const char *SSL_get_cipher_list(const SSL *ssl, int priority);',
+
+    'struct stack_st_X509_NAME *SSL_get_client_CA_list(const SSL *s);',
 
     # context
     'SSL_CTX *SSL_CTX_new(SSL_METHOD *method);',
@@ -116,6 +218,10 @@ FUNCTIONS = [
 
     'void SSL_CTX_set_info_callback(SSL_CTX *ctx, info_callback cb);',
     'void (*SSL_CTX_get_info_callback(const SSL_CTX *ctx))();',
+
+    'long SSL_CTX_set_options(SSL_CTX *ctx, long options);',
+    'long SSL_CTX_clear_options(SSL_CTX *ctx, long options);',
+    'long SSL_CTX_get_options(SSL_CTX *ctx);',
 
     'long SSL_CTX_set_mode(SSL_CTX *ctx, long mode);',
     'long SSL_CTX_get_mode(SSL_CTX *ctx);',
@@ -145,10 +251,23 @@ FUNCTIONS = [
     "int SSL_CTX_use_PrivateKey(SSL_CTX *ctx, EVP_PKEY *pkey);",
     "int SSL_CTX_use_PrivateKey_file(SSL_CTX *ctx, const char *file, int type);",
 
+    "struct stack_st_X509_NAME *SSL_CTX_get_client_CA_list(const SSL_CTX *ctx);",
+
+    "void SSL_CTX_set_cert_store(SSL_CTX *ctx, X509_STORE *store);",
+    "X509_STORE *SSL_CTX_get_cert_store(const SSL_CTX *ctx);",
+
+    "int SSL_CTX_add_client_CA(SSL_CTX *ctx, X509 *cacert);",
+    "void SSL_CTX_set_client_CA_list(SSL_CTX *ctx, struct stack_st_X509_NAME *list);",
+
+    "void SSL_CTX_set_tlsext_servername_callback(SSL_CTX *ctx, tlsext_servername_callback cb);",
+
     # X509_STORE_CTX
     "int    X509_STORE_CTX_get_error(X509_STORE_CTX *ctx);",
     "void   X509_STORE_CTX_set_error(X509_STORE_CTX *ctx,int s);",
     "int    X509_STORE_CTX_get_error_depth(X509_STORE_CTX *ctx);",
     "X509 * X509_STORE_CTX_get_current_cert(X509_STORE_CTX *ctx);",
+
+    # SSL_SESSION
+    "void SSL_SESSION_free(SSL_SESSION *session);",
 
 ]

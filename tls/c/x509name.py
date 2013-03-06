@@ -23,4 +23,10 @@ FUNCTIONS = [
     'char *           X509_NAME_oneline(X509_NAME *a,char *buf,int size);',
     'X509_NAME *X509_NAME_dup(X509_NAME *xn);',
     'void X509_NAME_free(X509_NAME *xn);',
+
+    'struct stack_st_X509_NAME * sk_X509_NAME_new_null();',
+    'int sk_X509_NAME_num(struct stack_st_X509_NAME * stack);',
+    'int sk_X509_NAME_push(struct stack_st_X509_NAME * stack, X509_NAME * x509);',
+    'X509_NAME * sk_X509_NAME_value(struct stack_st_X509_NAME * stack, int index);',
+    'void sk_X509_NAME_free(struct stack_st_X509_NAME * stack);',
 ]

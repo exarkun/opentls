@@ -47,4 +47,12 @@ FUNCTIONS = [
     # TODO
     # BIO null
     'BIO_METHOD *BIO_s_null(void);',
+
+    # Other stuff
+    "int BIO_should_read(BIO *b);",
+    "int BIO_should_write(BIO *b);",
+    "int BIO_should_io_special(BIO *b);",
+    "int BIO_retry_type(BIO *b);",
+    "int BIO_should_retry(BIO *b);",
+
 ]
