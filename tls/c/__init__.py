@@ -145,6 +145,7 @@ class API(object):
         self.INCLUDES = []
         self.TYPES = []
         self.FUNCTIONS = []
+        self.C_CUSTOMIZATION = []
         self.SETUP = []
         self.TEARDOWN = []
         self._import()
@@ -160,6 +161,7 @@ class API(object):
             self._import_definitions(module, 'INCLUDES')
             self._import_definitions(module, 'TYPES')
             self._import_definitions(module, 'FUNCTIONS')
+            self._import_definitions(module, 'C_CUSTOMIZATION')
             self._import_definitions(module, 'SETUP')
             self._import_definitions(module, 'TEARDOWN')
 
@@ -179,12 +181,12 @@ class API(object):
 
     def _verify(self):
         "load openssl, create function attributes"
-        includes = "\n".join(self.INCLUDES)
-        self.openssl = self.ffi.verify(includes,
-                extra_compile_args=[
-                    '-Wno-deprecated-declarations',
+        self.openssl = self.ffi.verify(
+            source="\n".join(self.INCLUDES + self.C_CUSTOMIZATION),
+            extra_compile_args=[
+                '-Wno-deprecated-declarations',
                 ],
-                libraries=['ssl'])
+            libraries=['ssl'])
 
     def _populate(self):
         "Attach function definitions to self"

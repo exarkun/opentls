@@ -7,6 +7,9 @@ SETUP = [
 ]
 
 TYPES = [
+    # Internally invented symbol to tell us if SSLv2 is supported
+    'static const int PYOPENSSL_NO_SSL2;',
+
     'static const int SSL_FILETYPE_PEM;',
     'static const int SSL_FILETYPE_ASN1;',
 
@@ -137,9 +140,7 @@ FUNCTIONS = [
 
     'int SSL_library_init(void);',
     # methods
-#   'SSL_METHOD *SSLv2_method(void);',
-#   'SSL_METHOD *SSLv2_server_method(void);',
-#   'SSL_METHOD *SSLv2_client_method(void);',
+
     'const SSL_METHOD *SSLv3_method(void);',
     'const SSL_METHOD *SSLv3_server_method(void);',
     'const SSL_METHOD *SSLv3_client_method(void);',
@@ -149,6 +150,14 @@ FUNCTIONS = [
     'const SSL_METHOD *SSLv23_method(void);',
     'const SSL_METHOD *SSLv23_server_method(void);',
     'const SSL_METHOD *SSLv23_client_method(void);',
+
+    # SSLv2 support is compiled out of some versions of OpenSSL.  These will
+    # get special support when we generate the bindings so that if they are
+    # available they will be wrapped, but if they are not they won't cause
+    # problems (like link errors).
+    'SSL_METHOD *SSLv2_method(void);',
+    'SSL_METHOD *SSLv2_server_method(void);',
+    'SSL_METHOD *SSLv2_client_method(void);',
 
     # SSL
     "SSL_CTX *SSL_set_SSL_CTX(SSL *ssl, SSL_CTX* ctx);",
@@ -183,9 +192,6 @@ FUNCTIONS = [
     'int SSL_get_shutdown(const SSL *ssl);',
 
     'int SSL_pending(const SSL *ssl);',
-
-    'void SSL_set_tlsext_host_name(SSL *ssl, char *name);',
-    'const char *SSL_get_servername(const SSL *s, const int type);',
 
     'int SSL_write(SSL *ssl, const void *buf, int num);',
     'int SSL_read(SSL *ssl, void *buf, int num);',
@@ -265,8 +271,6 @@ FUNCTIONS = [
     "int SSL_CTX_add_client_CA(SSL_CTX *ctx, X509 *cacert);",
     "void SSL_CTX_set_client_CA_list(SSL_CTX *ctx, struct stack_st_X509_NAME *list);",
 
-    "void SSL_CTX_set_tlsext_servername_callback(SSL_CTX *ctx, tlsext_servername_callback cb);",
-
     # X509_STORE_CTX
     "int    X509_STORE_CTX_get_error(X509_STORE_CTX *ctx);",
     "void   X509_STORE_CTX_set_error(X509_STORE_CTX *ctx,int s);",
@@ -276,13 +280,23 @@ FUNCTIONS = [
     # SSL_SESSION
     "void SSL_SESSION_free(SSL_SESSION *session);",
 
-]
-
-
-# XXX This is wrong.  Instead, add some blobs of junk to the verify() call to
-# check for these existing and define stub versions in their place if not.
-CONDITIONAL_FUNCTIONS = [
+    # SNI APIs were introduced in OpenSSL 1.0.0.  To continue to support
+    # earlier versions some special handling of these is necessary.
     'void SSL_set_tlsext_host_name(SSL *ssl, char *name);',
     'const char *SSL_get_servername(const SSL *s, const int type);',
-    "void SSL_CTX_set_tlsext_servername_callback(SSL_CTX *ctx, tlsext_servername_callback cb);",
+    'void SSL_CTX_set_tlsext_servername_callback(SSL_CTX *ctx, tlsext_servername_callback cb);',
 ]
+
+C_CUSTOMIZATION = [
+    """
+#ifdef OPENSSL_NO_SSL2
+static const int PYOPENSSL_NO_SSL2 = 1;
+SSL_METHOD* (*SSLv2_method)(void) = NULL;
+SSL_METHOD* (*SSLv2_client_method)(void) = NULL;
+SSL_METHOD* (*SSLv2_server_method)(void) = NULL;
+#else
+static const int PYOPENSSL_NO_SSL2 = 0;
+#endif
+""",
+    ]
+
