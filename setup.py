@@ -1,11 +1,10 @@
 #!/usr/bin/env python
-from distribute_setup import use_setuptools
-use_setuptools()
 
-from setuptools import setup
+from distutils.core import setup
 import re
 import sys
 
+from tls.c import api
 
 def load_version(filename='tls/version.py'):
     "Parse a __version__ number from a source file"
@@ -30,6 +29,8 @@ setup(
     url='https://github.com/aliles/opentls',
     description='Cryptographic APIs for Python using OpenSSL',
     long_description=open('README.rst').read(),
+    ext_package="tls.c",
+    ext_modules=[api.ffi.verifier.get_extension()],
     license='ASL',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',

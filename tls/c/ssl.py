@@ -277,3 +277,12 @@ FUNCTIONS = [
     "void SSL_SESSION_free(SSL_SESSION *session);",
 
 ]
+
+
+# XXX This is wrong.  Instead, add some blobs of junk to the verify() call to
+# check for these existing and define stub versions in their place if not.
+CONDITIONAL_FUNCTIONS = [
+    'void SSL_set_tlsext_host_name(SSL *ssl, char *name);',
+    'const char *SSL_get_servername(const SSL *s, const int type);',
+    "void SSL_CTX_set_tlsext_servername_callback(SSL_CTX *ctx, tlsext_servername_callback cb);",
+]

@@ -9,6 +9,9 @@ from cffi import FFI
 __all__ = ['api']
 
 
+# XXX
+# <arigo> that looks like a huge amount of nonsense
+# :(
 class CdataOwner(object):
     """CData wrapper that adds coownership of cdata objects.
 
@@ -185,11 +188,13 @@ class API(object):
 
     def _populate(self):
         "Attach function definitions to self"
+        # XXX using private attribute of cffi here - bad
         for decl in self.ffi._parser._declarations:
             if not decl.startswith(('function ', 'constant ')):
                 continue
             name = decl.split(None, 1)[1]
             setattr(self, name, getattr(self.openssl, name))
+        # XXX it is weird to mix cffi apis and openssl apis on one object here
         self.NULL = self.ffi.NULL
         self.buffer = self.ffi.buffer
         self.callback = self.ffi.callback
