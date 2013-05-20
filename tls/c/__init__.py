@@ -189,14 +189,9 @@ class API(object):
             libraries=['ssl'])
 
     def _populate(self):
-        "Attach function definitions to self"
-        # XXX using private attribute of cffi here - bad
-        for decl in self.ffi._parser._declarations:
-            if not decl.startswith(('function ', 'constant ')):
-                continue
-            name = decl.split(None, 1)[1]
-            setattr(self, name, getattr(self.openssl, name))
-        # XXX it is weird to mix cffi apis and openssl apis on one object here
+        """
+        Bind some aliases for FFI APIs on self.
+        """
         self.NULL = self.ffi.NULL
         self.buffer = self.ffi.buffer
         self.callback = self.ffi.callback
@@ -205,6 +200,16 @@ class API(object):
         self.string = self.ffi.string
         self.relate = CdataOwner._relate
         CdataOwner._add_coownership(self)
+
+
+    def __getattr__(self, name):
+        """
+        Try to resolve any attribute that does not exist on self as an
+        attribute of the OpenSSL FFI object (in other words, as an OpenSSL
+        API).
+        """
+        return getattr(self.openssl, name)
+
 
     def _initialise(self):
         "initialise openssl, schedule cleanup at exit"
