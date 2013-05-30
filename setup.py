@@ -4,7 +4,7 @@ from distutils.core import setup
 import re
 import sys
 
-from tls.c import api
+import tls.c
 
 def load_version(filename='tls/version.py'):
     "Parse a __version__ number from a source file"
@@ -22,8 +22,25 @@ PYTHON3K = sys.version_info[0] > 2
 setup(
     name='opentls',
     version=load_version(),
-    packages=['tls'],
+
+    # Grab all of the Python packages we want to distribute or install,
+    # top-level or otherwise.
+    packages=['tls', 'tls.c', 'tls.io'],
+
+    # Get cffi to define an extension module for the bindings, one that takes
+    # advantage of cffi's caching and distribution features so we can build
+    # binary packages that don't require the installer to have a compiler.
+    ext_modules=[tls.c.api.ffi.verifier.get_extension()],
+
+    # And put any cffi generated extension modules into the tls package instead
+    # of leaving them lying around at the top-level as is the default (note
+    # this value must agree with the value passed to the verify() call in the
+    # implementation).
+    ext_package="tls",
+
+    # cffi-based packages are not zip-safe.
     zip_safe=False,
+
     author='Aaron Iles',
     author_email='aaron.iles@gmail.com',
     url='https://github.com/aliles/opentls',
@@ -49,7 +66,7 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: System :: Networking'
     ],
-    install_requires=['cffi==0.5'],
+    install_requires=['cffi==0.6'],
     tests_require=['mock'] + [] if PYTHON3K else ['unittest2'],
     test_suite="tests" if PYTHON3K else "unittest2.collector"
 )

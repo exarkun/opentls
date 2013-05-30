@@ -183,6 +183,8 @@ class API(object):
         "load openssl, create function attributes"
         self.openssl = self.ffi.verify(
             source="\n".join(self.INCLUDES + self.C_CUSTOMIZATION),
+            # ext_package must agree with the value in setup.py
+            ext_package="tls",
             extra_compile_args=[
                 '-Wno-deprecated-declarations',
                 ],
