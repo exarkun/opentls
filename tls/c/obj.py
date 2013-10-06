@@ -11,6 +11,8 @@ TYPES = [
     'static const int OBJ_NAME_TYPE_NUM;',
     'struct obj_name_st { int type; int alias; const char *name; const char *data; ...; };',
     'typedef struct obj_name_st OBJ_NAME;',
+
+    'static const int NID_subject_alt_name;',
 ]
 
 FUNCTIONS = [

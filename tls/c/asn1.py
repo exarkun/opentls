@@ -5,18 +5,38 @@ INCLUDES = [
 TYPES = [
     'typedef int ASN1_BOOLEAN;',
     'typedef ... ASN1_INTEGER;',
-    'typedef ... ASN1_OCTET_STRING;',
+
+    """
+    /* This is the base type that holds just about everything :-) */
+    struct asn1_string_st {
+        int length;
+        int type;
+        unsigned char *data;
+        /* The value of the following field depends on the type being
+         * held.  It is mostly being used for BIT_STRING so if the
+         * input data has a non-zero 'unused bits' value, it will be
+         * handled correctly */
+        long flags;
+    };
+    """,
+
+    'typedef struct asn1_string_st ASN1_OCTET_STRING;',
+    'typedef struct asn1_string_st ASN1_IA5STRING;',
     'typedef ... ASN1_OBJECT;',
     'typedef ... ASN1_STRING;',
     'typedef ... ASN1_TYPE;',
     'typedef ... ASN1_GENERALIZEDTIME;',
     'typedef ... ASN1_ENUMERATED;',
+    'typedef ... ASN1_ITEM;',
+    'typedef ... ASN1_VALUE;',
 
     """
     typedef struct {
         ...;
     } ASN1_TIME;
     """,
+
+    'typedef const ASN1_ITEM ASN1_ITEM_EXP;',
 
     'typedef ... ASN1_UTCTIME;',
 
@@ -75,4 +95,8 @@ FUNCTIONS = [
     'ASN1_ENUMERATED * ASN1_ENUMERATED_new();',
     'void ASN1_ENUMERATED_free(ASN1_ENUMERATED *a);',
     'int ASN1_ENUMERATED_set(ASN1_ENUMERATED *a, long v);',
+
+    'ASN1_VALUE * ASN1_item_d2i(ASN1_VALUE **val, const unsigned char **in, long len, const ASN1_ITEM *it);',
+    'ASN1_ITEM *ASN1_ITEM_ptr(ASN1_ITEM*);',
+
 ]
